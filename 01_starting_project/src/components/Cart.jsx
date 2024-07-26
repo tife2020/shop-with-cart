@@ -1,7 +1,8 @@
 import { useRef, forwardRef, useImperativeHandle } from "react";
 import CartItem from "./CartItem";
+import {createPortal} from 'react-dom'
 
-const Cart = forwardRef(({ cart, add, subtract, totalCost}, ref) => {
+const Cart = forwardRef(function Cart ({cart, add, subtract, totalCost}, ref){
   const dialog = useRef();
 
   useImperativeHandle(ref, () => {
@@ -49,10 +50,10 @@ const Cart = forwardRef(({ cart, add, subtract, totalCost}, ref) => {
       </>
     );
   }
-  return (
+  return createPortal(
     <dialog
       ref={dialog}
-      className="bg-cartBg p-4 rounded-md gap-4 w-1/3 backdrop:bg-black/80"
+      className="bg-cartBg p-4 rounded-md gap-4 w-1/3 backdrop:bg-black/80 font-cusFont"
     >
       <h1 className="font-semibold text-2xl uppercase text-[#32230C] mb-4">
         Your Cart
@@ -64,7 +65,7 @@ const Cart = forwardRef(({ cart, add, subtract, totalCost}, ref) => {
       >
         {cartBtn}
       </form>
-    </dialog>
+    </dialog>, document.getElementById('modal')
   );
 });
 

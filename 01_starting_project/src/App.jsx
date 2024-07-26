@@ -68,10 +68,12 @@ function App() {
       let itemTotalPrice = itemAmount * itemPrice;
       return (total += itemTotalPrice);
     }, 0);
+
+    total = total.toFixed(2)
     setTotalCost(total);
   }
 
-  console.log(cart);
+  // console.log(cart);
 
   return (
     <div className="mx-auto max-w-[70%] font-cusFont ">
