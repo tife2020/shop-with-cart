@@ -1,7 +1,7 @@
-import React from "react";
 import Button from "./Button";
 
-function ShopItem({ id, image, title, price, description, ...props }) {
+
+function ShopItem({image, title, price, description, ...props }) {
   return (
     <div className="bg-[#5F4E33] rounded-md flex flex-col ">
       <img src={image} className="rounded-md w-full" />

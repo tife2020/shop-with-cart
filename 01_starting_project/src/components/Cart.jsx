@@ -1,8 +1,12 @@
-import { useRef, forwardRef, useImperativeHandle } from "react";
+import { useRef, forwardRef, useImperativeHandle, useContext } from "react";
 import CartItem from "./CartItem";
 import {createPortal} from 'react-dom'
+import { ShopContext } from "../store/ShopContextProvider";
 
-const Cart = forwardRef(function Cart ({cart, add, subtract, totalCost}, ref){
+
+const Cart = forwardRef(function Cart (props, ref){
+  const { cart, totalCost } = useContext(ShopContext)
+
   const dialog = useRef();
 
   useImperativeHandle(ref, () => {
@@ -32,7 +36,7 @@ const Cart = forwardRef(function Cart ({cart, add, subtract, totalCost}, ref){
     cartContent = (
       <>
         {cart.map((item) => (
-          <CartItem key={item.id} {...item} add ={add} subtract ={subtract} />
+          <CartItem key={item.id} {...item}/>
         ))}
         <p className="text-right mb-4">
           Cart Total: <span className="font-bold">${totalCost}</span>

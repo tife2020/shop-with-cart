@@ -1,9 +1,12 @@
-import React, { useRef } from "react";
+import React, { useRef, useContext} from "react";
 import logo from "../assets/logo.png";
 import Button from "./Button";
 import Cart from "./Cart";
+import { ShopContext } from "../store/ShopContextProvider";
 
-function Header({ cart, add, subtract, totalCost, findTotalCost }) {
+function Header() {
+
+  const { cart, findTotalCost } = useContext(ShopContext)
   const cartModal = useRef();
 
   function openCart() {
@@ -15,10 +18,6 @@ function Header({ cart, add, subtract, totalCost, findTotalCost }) {
       <nav className="flex items-center justify-between py-12">
         <Cart
           ref={cartModal}
-          cart={cart}
-          add={add}
-          subtract={subtract}
-          totalCost={totalCost}
         />
         <span className="flex items-center gap-8">
           <img src={logo} className="w-20 " alt="company logo" />
